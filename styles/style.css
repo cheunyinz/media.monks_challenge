@@ -1,0 +1,248 @@
+/* FONTS */
+@font-face {
+  font-family: "helveticanowformonks_bold";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Bold.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks_extra";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Ext.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks_extraxbold";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-ExtXBd.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks_light";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Light.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks_medium";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Md.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks_textmedium";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-TextMd.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticanowformonks";
+  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* CSS RESET */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizespeed;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/*CUSTOM PROPERTIES*/
+
+:root {
+  --first-second-section-bg-color: #2a2c38;
+  --first-second-section-accent-color: #dfbafd;
+
+  --third-section-bg-color: #ffcb16;
+  --third-section-accent-color: #7c26c9;
+
+  --fourth-section-bg-color: #4e22ed;
+  --fourth-section-accent-color: #e1ff9b;
+
+  --fifth-section-bg-color: #3a0c60;
+  --fifth-section-accent-color: #ff225a;
+
+  --sixth-section-bg-color: #00db7c;
+  --sixth-section-accent-color: #4e22ed;
+
+  --seventh-section-bg-color: #002838;
+  --seventh-section-accent-color: #00db7c;
+}
+
+.container {
+  position: relative;
+}
+
+.header {
+  display: grid;
+  place-content: center;
+  padding-block: 3rem;
+  position: fixed;
+  min-width: 100vw;
+}
+
+.header__image {
+  fill: blue;
+}
+
+.sidenav {
+  position: fixed;
+  right: 5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.sidenav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidenav__link {
+  font-family: "helveticanowformonks_textmedium", Helvetica;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: block;
+  height: 1.75rem;
+  width: 1.75rem;
+  text-align: center;
+  display: grid;
+  place-content: center;
+}
+
+.wrapper {
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.wrapper__background {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 0;
+}
+
+.section {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+.section__inner {
+  max-width: 80rem;
+  padding-inline: 2rem;
+  z-index: 1;
+}
+
+.section__heading {
+  font-family: "helveticanowformonks_extraxbold", Helvetica;
+  font-size: clamp(1.8rem, 7vw + 1rem, 5rem);
+  line-height: 1;
+  margin-bottom: 8rem;
+}
+
+.section__heading--underline {
+  background: url("/assets/underlining.svg") bottom no-repeat;
+  width: fit-content;
+  padding-bottom: 0.5rem;
+}
+
+.section__text {
+  font-family: "helveticanowformonks_textmedium", Helvetica;
+  font-size: clamp(1rem, calc(0.28vw + 1rem), 1.5rem);
+  max-width: 22.5rem;
+}
+
+.section--first {
+  background-color: var(--first-second-section-bg-color);
+  color: var(--first-second-section-accent-color);
+}
+
+.section--second {
+  background-color: var(--first-second-section-bg-color);
+  display: grid;
+  place-content: center;
+}
+
+.section--third {
+  background-color: var(--third-section-bg-color);
+  color: var(--third-section-accent-color);
+}
+
+.section--fourth {
+  background-color: var(--fourth-section-bg-color);
+  color: var(--fourth-section-accent-color);
+}
+
+.section--fifth {
+  background-color: var(--fifth-section-bg-color);
+  color: var(--fifth-section-accent-color);
+}
+
+.section--sixth {
+  background-color: var(--sixth-section-bg-color);
+  color: var(--sixth-section-accent-color);
+}
+
+.section--seventh {
+  background-color: var(--seventh-section-bg-color);
+  color: var(--seventh-section-accent-color);
+}
