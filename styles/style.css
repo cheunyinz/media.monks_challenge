@@ -130,10 +130,40 @@ ol {
   padding-block: 3rem;
   position: fixed;
   min-width: 100vw;
+  transition: 0.3s;
+  z-index: 4;
 }
 
-.header__image {
-  fill: blue;
+.header--first {
+  background-color: var(--first-second-section-bg-color);
+}
+
+.header--second {
+  background-color: var(--first-second-section-bg-color);
+}
+
+.header--third {
+  background-color: var(--third-section-bg-color);
+}
+
+.header--fourth {
+  background-color: var(--fourth-section-bg-color);
+}
+
+.header--fifth {
+  background-color: var(--fifth-section-bg-color);
+}
+
+.header--sixth {
+  background-color: var(--sixth-section-bg-color);
+}
+
+.header--seventh {
+  background-color: var(--seventh-section-bg-color);
+}
+
+.test {
+  background-color: white;
 }
 
 .sidenav {
@@ -153,7 +183,7 @@ ol {
 }
 
 .sidenav__link {
-  font-family: "helveticanowformonks_textmedium", Helvetica;
+  font-family: "helveticanowformonks_bold", Helvetica;
   color: white;
   font-size: 0.75rem;
   border-radius: 50%;
@@ -168,7 +198,6 @@ ol {
 
 .wrapper {
   min-height: 100vh;
-  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -187,7 +216,7 @@ ol {
 }
 
 .section__inner {
-  max-width: 80rem;
+  max-width: 60rem;
   padding-inline: 2rem;
   z-index: 1;
 }
