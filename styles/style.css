@@ -134,6 +134,11 @@ ol {
   z-index: 4;
 }
 
+.header--hidden {
+  transform: translateY(-100%);
+  transition: 0.3s;
+}
+
 .header--first {
   background-color: var(--first-second-section-bg-color);
 }
