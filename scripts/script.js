@@ -2,6 +2,7 @@ const sections = document.querySelectorAll('.section');
 const header = document.querySelector('#header');
 const headerLogo = document.querySelector('#header-logo');
 const navBar = document.querySelector('#navbar');
+const navBarLinks = document.querySelectorAll('.navbar__link');
 
 let currentSectionClass = null;
 let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -9,6 +10,7 @@ let currentSectionClassNav = null;
 let lastNavScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
 const updateHeader = (sectionCount) => {
+
     if (currentSectionClass !== sectionCount) {
         header.classList.remove(`header--${currentSectionClass}`);
         header.classList.add(`header--${sectionCount}`);
@@ -17,10 +19,28 @@ const updateHeader = (sectionCount) => {
     }
 };
 
+let selectedNavBarLink;
+
 const updateNavBar = (sectionCount) => {
+    const navBarLinksArray = Array.from(navBarLinks);
+
+    navBarLinksArray.forEach(link => {
+        if (link.dataset.linkcount !== sectionCount) {
+            link.classList.forEach(className => {
+                if (className.startsWith('navbar__link--')) {
+                    link.classList.remove(className);
+                }
+            });
+        }
+    });
+
+    selectedNavBarLink = navBarLinksArray.find(link => link.dataset.linkcount === sectionCount);
+
     if (currentSectionClassNav !== sectionCount) {
         navBar.classList.remove(`navbar--${currentSectionClassNav}`);
         navBar.classList.add(`navbar--${sectionCount}`);
+        selectedNavBarLink.classList.add(`navbar__link--${sectionCount}`);
+
         currentSectionClassNav = sectionCount;
     }
 };
@@ -68,19 +88,49 @@ const headerScrollEventListener = () => {
 const navScrollEventListener = () => {
     const scrollNavTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollNavTop > lastNavScrollTop) {
-        // navBar.classList.add('navbar--hidden');
+        navBar.classList.add('navbar--hidden');
         scrollHandler(downNavObserver, upNavObserver, true);
     } else {
-        // navBar.classList.remove('navbar--hidden');
+        navBar.classList.remove('navbar--hidden');
         scrollHandler(upNavObserver, downNavObserver, false);
+
     }
     lastNavScrollTop = scrollNavTop;
 };
 
 const downObserver = createHeaderObserver(0.9, updateHeader);
 const upObserver = createHeaderObserver(0.1, updateHeader);
-const downNavObserver = createNavObserver(0.9, updateNavBar);
-const upNavObserver = createNavObserver(0.1, updateNavBar);
+
+let downNavObserver;
+let upNavObserver;
+
+const updateNavObserversThresholds = () => {
+
+    if (downNavObserver) {
+        downNavObserver.disconnect();
+    }
+    if (upNavObserver) {
+        upNavObserver.disconnect();
+    }
+
+    if (window.innerWidth < 1200) {
+        downNavObserver = createNavObserver(0.9, updateNavBar);
+        upNavObserver = createNavObserver(0.1, updateNavBar);
+
+
+    } else {
+        downNavObserver = createNavObserver(0.5, updateNavBar);
+        upNavObserver = createNavObserver(0.5, updateNavBar);
+    }
+
+    sections.forEach(section => {
+        downNavObserver.observe(section);
+        upNavObserver.observe(section);
+    });
+};
+
+updateNavObserversThresholds();
+
 
 sections.forEach(section => {
     downObserver.observe(section);
@@ -91,11 +141,4 @@ sections.forEach(section => {
 
 window.addEventListener('scroll', headerScrollEventListener);
 window.addEventListener('scroll', navScrollEventListener);
-
-
-
-
-
-
-
-
+window.addEventListener('resize', updateNavObserversThresholds);

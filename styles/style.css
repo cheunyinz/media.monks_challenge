@@ -260,21 +260,63 @@ ol {
 
 .navbar__link {
   font-family: "helveticanowformonks_bold", Helvetica;
-  color: white;
   font-size: 0.75rem;
   border-radius: 50%;
-  border: 1px solid white;
   display: block;
   height: 1.75rem;
   width: 1.75rem;
   text-align: center;
   display: grid;
   place-content: center;
+  border-style: solid;
+  border-width: 1px;
+  transition: 0.15s ease-in-out;
+}
+
+.navbar__link:hover {
+  border-width: 4px;
+  transition: 0.15s ease-in-out;
+}
+
+.navbar .navbar__link--first {
+  color: var(--first-second-section-bg-color);
+  background-color: var(--first-second-section-accent-color);
+}
+
+.navbar .navbar__link--second {
+  color: var(--first-second-section-bg-color);
+  background-color: var(--first-second-section-accent-color);
+}
+
+.navbar .navbar__link--third {
+  color: var(--third-section-bg-color);
+  background-color: var(--third-section-accent-color);
+}
+
+.navbar .navbar__link--fourth {
+  color: var(--fourth-section-bg-color);
+  background-color: var(--fourth-section-accent-color);
+}
+
+.navbar .navbar__link--fifth {
+  color: var(--fifth-section-bg-color);
+  background-color: var(--fifth-section-accent-color);
+}
+
+.navbar .navbar__link--sixth {
+  color: var(--sixth-section-bg-color);
+  background-color: var(--sixth-section-accent-color);
+}
+
+.navbar .navbar__link--seventh {
+  color: var(--seventh-section-bg-color);
+  background-color: var(--seventh-section-accent-color);
 }
 
 .wrapper {
   min-height: 100vh;
   overflow-x: hidden;
+  background-image: url(/assets/art.svg);
 }
 
 .wrapper__background {
@@ -353,16 +395,32 @@ ol {
   color: var(--seventh-section-accent-color);
 }
 
+/* DESKTOP */
+
 @media screen and (min-width: 75rem) {
   .navbar {
     right: 5rem;
     width: auto;
     min-height: 100vh;
     flex-direction: column;
+    background-color: transparent;
+    padding-block: 0;
   }
 
   .navbar__list {
     display: flex;
     flex-direction: column;
+  }
+
+  .navbar__list-item {
+    transition: 0.3s;
+  }
+  .navbar {
+    transition: 0.3s;
+  }
+
+  .navbar--hidden {
+    transform: translateX(100vw);
+    transition: 2s;
   }
 }
