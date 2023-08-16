@@ -313,18 +313,23 @@ ol {
   background-color: var(--seventh-section-accent-color);
 }
 
+main {
+  position: relative;
+  perspective: 1px;
+}
+
 .wrapper {
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: url(/assets/art.svg);
+  position: relative;
 }
 
 .wrapper__background {
   position: absolute;
   right: 0;
-  bottom: 0;
-  height: 100%;
+  bottom: 40%;
   z-index: 0;
+  opacity: 0.5;
 }
 
 .section {

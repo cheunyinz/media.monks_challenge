@@ -142,3 +142,26 @@ sections.forEach(section => {
 window.addEventListener('scroll', headerScrollEventListener);
 window.addEventListener('scroll', navScrollEventListener);
 window.addEventListener('resize', updateNavObserversThresholds);
+
+
+
+const wrapperBackground = document.querySelector('#wrapper-background');
+const sectionThree = document.querySelector('.section--third');
+const lastSection = sections[sections.length - 1];
+
+const updateWrapperBackgroundPosition = () => {
+    const sectionThreeTop = sectionThree.offsetTop;
+    const lastSectionTop = lastSection.offsetTop;
+    const totalScrollDistance = lastSectionTop - sectionThreeTop;
+    const currentScrollPosition = Math.min(
+        Math.max(0, window.scrollY - sectionThreeTop),
+        totalScrollDistance
+    );
+
+    const scrollProgress = currentScrollPosition / totalScrollDistance;
+
+    const targetBottomValue = 40 - 40 * scrollProgress;
+    wrapperBackground.style.bottom = `${targetBottomValue}%`;
+};
+
+window.addEventListener('scroll', updateWrapperBackgroundPosition);
