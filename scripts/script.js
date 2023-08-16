@@ -5,7 +5,7 @@ const navBar = document.querySelector('#navbar');
 const navBarLinks = document.querySelectorAll('.navbar__link');
 
 let currentSectionClass = null;
-let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+let lastHeaderScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 let currentSectionClassNav = null;
 let lastNavScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -49,7 +49,7 @@ const createHeaderObserver = (threshold, callback) => {
     return new IntersectionObserver((entries) => {
         const visibleSections = entries.filter(entry => entry.isIntersecting);
         if (visibleSections.length > 0) {
-            const sectionCount = visibleSections[0].target.className.split('--')[1];
+            const sectionCount = visibleSections[0].target.dataset.sectioncount;
             callback(sectionCount);
         }
     }, { threshold });
@@ -59,7 +59,7 @@ const createNavObserver = (threshold, callback) => {
     return new IntersectionObserver(entries => {
         const visibleSections = entries.filter(entry => entry.isIntersecting);
         if (visibleSections.length > 0) {
-            const sectionCount = visibleSections[visibleSections.length - 1].target.className.split('--')[1];
+            const sectionCount = visibleSections[visibleSections.length - 1].target.dataset.sectioncount;
             callback(sectionCount);
         }
     }, { threshold });
@@ -74,19 +74,20 @@ const scrollHandler = (observer1, observer2, isScrollDown) => {
 };
 
 const headerScrollEventListener = () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) {
+    const scrollHeaderTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollHeaderTop > lastHeaderScrollTop) {
         header.classList.add('header--hidden');
-        scrollHandler(downObserver, upObserver, true);
+        scrollHandler(downHeaderObserver, upHeaderObserver, true);
     } else {
         header.classList.remove('header--hidden');
-        scrollHandler(upObserver, downObserver, false);
+        scrollHandler(upHeaderObserver, downHeaderObserver, false);
     }
-    lastScrollTop = scrollTop;
+    lastHeaderScrollTop = scrollHeaderTop;
 };
 
 const navScrollEventListener = () => {
     const scrollNavTop = window.pageYOffset || document.documentElement.scrollTop;
+
     if (scrollNavTop > lastNavScrollTop) {
         navBar.classList.add('navbar--hidden');
         scrollHandler(downNavObserver, upNavObserver, true);
@@ -98,8 +99,8 @@ const navScrollEventListener = () => {
     lastNavScrollTop = scrollNavTop;
 };
 
-const downObserver = createHeaderObserver(0.9, updateHeader);
-const upObserver = createHeaderObserver(0.1, updateHeader);
+const downHeaderObserver = createHeaderObserver(0.9, updateHeader);
+const upHeaderObserver = createHeaderObserver(0.1, updateHeader);
 
 let downNavObserver;
 let upNavObserver;
@@ -133,10 +134,9 @@ updateNavObserversThresholds();
 
 
 sections.forEach(section => {
-    downObserver.observe(section);
-    upObserver.observe(section);
-    downNavObserver.observe(section);
-    upNavObserver.observe(section);
+    downHeaderObserver.observe(section);
+    upHeaderObserver.observe(section);
+
 });
 
 window.addEventListener('scroll', headerScrollEventListener);
@@ -160,8 +160,8 @@ const updateWrapperBackgroundPosition = () => {
 
     const scrollProgress = currentScrollPosition / totalScrollDistance;
 
-    const targetBottomValue = 40 - 40 * scrollProgress;
-    wrapperBackground.style.bottom = `${targetBottomValue}%`;
+    const targetBottomValue = 170 - 170 * scrollProgress;
+    wrapperBackground.style.transform = `translateY(-${targetBottomValue}%`;
 };
 
 window.addEventListener('scroll', updateWrapperBackgroundPosition);

@@ -8,40 +8,8 @@
 }
 
 @font-face {
-  font-family: "helveticanowformonks_extra";
-  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Ext.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "helveticanowformonks_extraxbold";
   src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-ExtXBd.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helveticanowformonks_light";
-  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Light.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helveticanowformonks_medium";
-  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-Md.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helveticanowformonks_textmedium";
-  src: url("/assets/fonts/HelveticaNowForMonks/woff2/HelveticaNowforMonks-TextMd.woff2")
     format("woff2");
   font-weight: normal;
   font-style: normal;
@@ -73,13 +41,6 @@ img,
 picture {
   max-width: 100%;
   display: block;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
 }
 
 body {
@@ -118,10 +79,6 @@ ol {
 
   --seventh-section-bg-color: #002838;
   --seventh-section-accent-color: #00db7c;
-}
-
-.container {
-  position: relative;
 }
 
 .header {
@@ -174,7 +131,7 @@ ol {
   width: 100%;
   justify-content: center;
   z-index: 2;
-  padding-block: 3rem 1rem;
+  padding-block: 2rem;
   transition: 0.5s;
 }
 
@@ -255,7 +212,7 @@ ol {
 
 .navbar__list {
   display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .navbar__link {
@@ -270,11 +227,6 @@ ol {
   place-content: center;
   border-style: solid;
   border-width: 1px;
-  transition: 0.15s ease-in-out;
-}
-
-.navbar__link:hover {
-  border-width: 4px;
   transition: 0.15s ease-in-out;
 }
 
@@ -313,11 +265,6 @@ ol {
   background-color: var(--seventh-section-accent-color);
 }
 
-main {
-  position: relative;
-  perspective: 1px;
-}
-
 .wrapper {
   min-height: 100vh;
   overflow-x: hidden;
@@ -327,7 +274,7 @@ main {
 .wrapper__background {
   position: absolute;
   right: 0;
-  bottom: 40%;
+  bottom: 0;
   z-index: 0;
   opacity: 0.5;
 }
@@ -359,9 +306,9 @@ main {
 }
 
 .section__text {
-  font-family: "helveticanowformonks_textmedium", Helvetica;
-  font-size: clamp(1rem, calc(0.28vw + 1rem), 1.5rem);
-  max-width: 25rem;
+  font-family: "helveticanowformonks", Helvetica;
+  font-size: clamp(1rem, calc(0.5vw + 1rem), 2rem);
+  max-width: 30rem;
 }
 
 .section--first {
@@ -415,6 +362,12 @@ main {
   .navbar__list {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navbar__link:hover {
+    border-width: 4px;
+    transition: 0.15s ease-in-out;
   }
 
   .navbar__list-item {
